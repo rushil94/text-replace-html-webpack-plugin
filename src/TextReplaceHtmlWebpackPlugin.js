@@ -5,11 +5,20 @@ class TextReplaceHtmlWebpackPlugin {
 
     apply(compiler) {
         compiler.hooks.compilation.tap('TextReplaceHtmlWebpackPlugin', (compilation) => {
-            
+
             compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tapAsync(
                 'TextReplaceHtmlWebpackPlugin',
                 (data, cb) => {
-                    data.html += 'The Magic Footer';
+
+                    const {replacementArray} = this.options;
+
+                    if(Array.isArray(replacementArray)) {
+                        replacementArray.forEach((pattern) => {
+                            const {search, replace} = pattern;
+
+                            data.html = data.html.replace(new RegExp(search, "gi"), replace);
+                        })
+                    }
                     cb(null, data);
                 }
             );
