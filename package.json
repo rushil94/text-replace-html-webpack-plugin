@@ -2,9 +2,11 @@
   "name": "text-replace-html-webpack-plugin",
   "version": "1.0.0",
   "description": "This package is intended to be used along with html-webpack-plugin. It can be used to replace text in the html file created by the html-webpack-plugin during the webpack build process. Works only wth webpack@^4",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,13 @@
   "bugs": {
     "url": "https://github.com/rushil94/text-replace-html-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/rushil94/text-replace-html-webpack-plugin#readme"
+  "homepage": "https://github.com/rushil94/text-replace-html-webpack-plugin#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0"
+  }
 }
