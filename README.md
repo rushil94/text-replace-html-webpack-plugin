@@ -1,1 +1,1 @@
-# html-webpack-plugin-stringReplace
+# text-replace-html-webpack-plugin
