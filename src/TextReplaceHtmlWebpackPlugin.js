@@ -14,11 +14,30 @@ class TextReplaceHtmlWebpackPlugin {
 
                     if(Array.isArray(replacementArray)) {
                         replacementArray.forEach((pattern) => {
-                            const {search, replace} = pattern;
+                            const {searchString, replace, regex} = pattern;
 
-                            data.html = data.html.replace(new RegExp(search, "gi"), replace);
-                        })
+                            if (searchString && regex) {
+                                compilation.warnings.push(new Error(`TextReplaceHtmlWebpackPlugin => Provide either searchString (${searchString}) or regex (${regex}). If both are provided, regex will take precedence.`));
+                            }
+
+                            if(regex) {
+                                if (isRegExp(regex)) {
+                                    data.html = data.html.replace(regex, replace);
+                                } else {
+                                    compilation.warnings.push(new Error(`TextReplaceHtmlWebpackPlugin => regex : ${regex} : Invalid regex supplied.`));
+                                    // console.log("");
+                                }
+                            } else if (searchString) {
+                                if (isString(searchString)) {
+                                    data.html = data.html.replace(new RegExp(searchString, "g"), replace);
+                                }
+                                else {
+                                    compilation.warnings.push(new Error(`TextReplaceHtmlWebpackPlugin => searchString : ${searchString} : Invalid searchString supplied.`));
+                                }
+                            }
+                        });
                     }
+
                     cb(null, data);
                 }
             );
