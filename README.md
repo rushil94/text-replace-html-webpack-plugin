@@ -6,7 +6,7 @@ Might be used to import gzipped files (eg. bundle.js.gz) instead of .js (bundle.
 
 # Basic Usage
 
-Add plugin to webpack config `plugins`. And pass options.
+Add plugin to webpack config `plugins`. And pass the replacementArray.
 
 ```javascript
 const HtmlWebPackPlugin = require("html-webpack-plugin");
@@ -20,31 +20,33 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   module: {},
-  plugins: [
-    htmlWebpackPlugin,
-    new CompressionPlugin({
-        filename: "[path].gz[query]",
-        algorithm: "gzip",
-        test: /\.js$|\.css$|\.html$/
-        }
-    ),
-    new TextReplaceHtmlWebpackPlugin({ replacementArray : [
-        {
-            regex : /abcd/ig,
-            replace : 'xyz'
-        },
-        {
-            // Will change <script type="text/javascript" src="main.js">
-            //to <script type="text/javascript" src="main.js.gz">
-            regex : /js/ig,
-            replace : (match) => match + '.gz'
-        },
-        {
-            searchString : 'def',
-            replace : 'aaa'
-        },
+    plugins: [
+        htmlWebpackPlugin,
+        new CompressionPlugin({
+            filename: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/
+        }),
+        new TextReplaceHtmlWebpackPlugin(
+            {
+                replacementArray : [
+                    {
+                        regex : /abcd/ig,
+                        replace : 'xyz'
+                    },
+                    {
+                        // Will change <script type="text/javascript" src="main.js">
+                        //to <script type="text/javascript" src="main.js.gz">
+                        regex : /js/ig,
+                        replace : (match) => match + '.gz'
+                    },
+                    {
+                        searchString : 'def',
+                        replace : 'aaa'
+                    },
+                ]
+            }
+        ),
     ]
-    }),
-   ]
 };
 ```
