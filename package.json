@@ -1,39 +1,65 @@
 {
-  "name": "text-replace-html-webpack-plugin",
-  "version": "1.0.0",
-  "description": "This package is intended to be used along with html-webpack-plugin. It can be used to replace text in the html file created by the html-webpack-plugin during the webpack build process. Works only wth webpack@^4",
-  "main": "./dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d dist",
-    "prepublish": "npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rushil94/text-replace-html-webpack-plugin.git"
-  },
-  "keywords": [
-    "webpack",
-    "html-webpack-plugin",
-    "replace",
-    "replace-text",
-    "webpack4",
-    ".gz"
-  ],
-  "author": "Rushil Sharma",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rushil94/text-replace-html-webpack-plugin/issues"
-  },
-  "homepage": "https://github.com/rushil94/text-replace-html-webpack-plugin#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.0.0",
-    "lodash.isregexp": "^4.0.1",
-    "lodash.isstring": "^4.0.1"
-  }
+    "name": "text-replace-html-webpack-plugin",
+    "version": "1.0.0",
+    "description": "This package is intended to be used along with html-webpack-plugin. It can be used to replace text in the html file created by the html-webpack-plugin during the webpack build process. Works only wth webpack@^4",
+    "main": "./dist/index.js",
+    "scripts": {
+        "test": "ava",
+        "build": "babel src -d dist",
+        "prepublish": "npm run build",
+        "custom": "webpack --config test/webpack.config.js --mode production"
+    },
+    "ava": {
+        "files": [
+            "tests/test.js",
+            "!tests/output/**/*.js"
+        ],
+        "require": [
+            "@babel/core",
+            "@babel/preset-env",
+            "@babel/register"
+        ],
+        "verbose": true,
+        "babel": {
+            "extensions": [
+                "js"
+            ]
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/rushil94/text-replace-html-webpack-plugin.git"
+    },
+    "keywords": [
+        "webpack",
+        "html-webpack-plugin",
+        "replace",
+        "replace-text",
+        "webpack4",
+        ".gz"
+    ],
+    "author": "Rushil Sharma",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/rushil94/text-replace-html-webpack-plugin/issues"
+    },
+    "homepage": "https://github.com/rushil94/text-replace-html-webpack-plugin#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.0.0",
+        "@babel/core": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@babel/register": "^7.0.0",
+        "ava": "1.0.0-beta.8",
+        "babel-loader": "^8.0.2",
+        "compression-webpack-plugin": "^2.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "path": "^0.12.7",
+        "webpack": "^4.17.2",
+        "webpack-cli": "^3.1.0"
+    },
+    "dependencies": {
+        "@babel/polyfill": "^7.0.0",
+        "lodash.isregexp": "^4.0.1",
+        "lodash.isstring": "^4.0.1"
+    }
 }
