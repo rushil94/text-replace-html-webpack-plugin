@@ -1,3 +1,6 @@
+import isRegExp from 'lodash.isregexp';
+import isString from 'lodash.isstring';
+
 class TextReplaceHtmlWebpackPlugin {
     constructor(options) {
         this.options = options;
