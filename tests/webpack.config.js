@@ -53,7 +53,12 @@ module.exports = {
         },
         {
             //Will give warning, not error. (As error would have stopped the webpack build)
-            searchString : '/index/ig',
+            regex : '/index/ig',
+            replace : 'newIndex'
+        },
+        {
+            //Will give warning, not error. (As error would have stopped the webpack build)
+            searchString : /index/ig,
             replace : 'newIndex'
         }
     ]
