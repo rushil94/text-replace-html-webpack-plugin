@@ -5,14 +5,16 @@ const path = require('path');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: path.resolve(__dirname, 'index.html'),
-  filename: "./index.html"
+  filename: "index.html"
 });
 
 module.exports = {
 
+    mode : 'production',
+
     output: {
         path: path.resolve(__dirname, 'output'),
-        filename: '[name].[chunkhash].js'
+        filename: '[name].js'
     },
 
   module: {
@@ -36,10 +38,11 @@ module.exports = {
     ),
     new TextReplaceHtmlWebpackPlugin({ replacementArray : [
         {
-            regex : '/abcd/ig',
+            regex : /abcd/ig,
             replace : 'xyz'
         },
         {
+            //Will give warning, not error. (As error would have stopped the webpack build)
             regex : /js/ig,
             searchString : 'def',
             replace : (match) => match + '.gz'
@@ -48,6 +51,11 @@ module.exports = {
             searchString : 'def',
             replace : 'aaa'
         },
+        {
+            //Will give warning, not error. (As error would have stopped the webpack build)
+            searchString : '/index/ig',
+            replace : 'newIndex'
+        }
     ]
     }),
    ]

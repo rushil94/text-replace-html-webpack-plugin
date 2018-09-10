@@ -1,29 +1,68 @@
 import test from 'ava';
 import webpack from 'webpack';
+import fs from 'fs';
+import path from 'path';
 
-// 0. Import the config that uses my plugin
+//Import the config
 import options from './webpack.config.js';
 
 test.cb('Compiles routes nested at one level', t => {
 
-  // 1. Run webpack
+  //Run webpack
   webpack(options, function(err, stats) {
 
-    // 2. Fail test if there are errors
-    // if (err) {
-    //   return t.end(err);
-    // } else if (stats.hasErrors()) {
-    //   return t.end(stats.toString());
-    // }
+    //Fail test if there are errors
+    if (err) {
+      return t.end(err);
+    } else if (stats.hasErrors()) {
+      return t.end(stats.toString());
+    }
 
-    // 3. Map asset objects to output filenames
+    //Map asset objects to output filenames
     const files = stats.toJson().assets.map(x => x.name);
 
-    // 4. Run assertions. Make sure that the three expected
-    //    HTML files were generated
+    console.log(
+      stats.toString({
+        context: path.resolve(__dirname, '..'),
+        chunks: true,
+        chunkModules: true,
+        modules: false,
+      })
+    );
+    if (stats.hasErrors()) {
+      done(
+        new Error(
+          stats.toString({
+            context: path.resolve(__dirname, '..'),
+            errorDetails: true,
+          })
+        )
+      );
+      return;
+    }
+
+    //Check if index.html is created
     t.true(files.indexOf('index.html') !== -1);
-    // t.true(files.indexOf('about.html') !== -1);
-    // t.true(files.indexOf('404.html') !== -1);
+
+    const expectedDirectory = path.resolve(
+      __dirname,
+      'expected'
+    );
+
+    for (const file of fs.readdirSync(expectedDirectory)) {
+      const content = fs.readFileSync(
+        path.resolve(expectedDirectory, file),
+        'utf-8'
+      );
+
+      const actualContent = fs.readFileSync(
+        path.resolve(__dirname, 'output', file),
+        'utf-8'
+      );
+
+      //Checking if file generated matches file stored in expected folder
+      t.deepEqual(actualContent, content, 'Replacement not working correctly')
+    }
 
     t.end();
   });

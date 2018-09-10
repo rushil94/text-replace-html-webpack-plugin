@@ -28,7 +28,6 @@ class TextReplaceHtmlWebpackPlugin {
                                     data.html = data.html.replace(regex, replace);
                                 } else {
                                     compilation.warnings.push(new Error(`TextReplaceHtmlWebpackPlugin => regex : ${regex} : Invalid regex supplied.`));
-                                    // console.log("");
                                 }
                             } else if (searchString) {
                                 if (isString(searchString)) {
