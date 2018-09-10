@@ -5,8 +5,9 @@
     "main": "./dist/index.js",
     "scripts": {
         "test": "ava",
+        "coverage": "nyc ava",
         "build": "babel src -d dist",
-        "prepare" : "npm test && npm run build"
+        "prepare": "npm test && npm run build"
     },
     "ava": {
         "files": [
@@ -24,6 +25,22 @@
                 "js"
             ]
         }
+    },
+    "nyc": {
+        "check-coverage": true,
+        "include": [
+            "src/"
+        ],
+        "exclude": [
+            "tests/"
+        ],
+        "reporter": [
+            "text-summary",
+            "html"
+        ],
+
+        "temp-directory": "./coverage-reports-tmp",
+        "report-dir": "./coverage-reports"
     },
     "repository": {
         "type": "git",

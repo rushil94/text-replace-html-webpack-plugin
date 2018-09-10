@@ -1,3 +1,6 @@
 node_modules
 dist
 tests/output
+.nyc_output/
+coverage-reports/
+coverage-reports-tmp/
