@@ -1,6 +1,6 @@
 {
     "name": "text-replace-html-webpack-plugin",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "This package is intended to be used along with html-webpack-plugin. It can be used to replace text in the html file created by the html-webpack-plugin during the webpack build process. Works only wth webpack@^4",
     "main": "./dist/index.js",
     "scripts": {

@@ -11,7 +11,7 @@ Might be used to import gzipped files (eg. bundle.js.gz) instead of .js (bundle.
 Install with npm:
 
 ```bash
-npm install --save-dev webpack
+npm install --save-dev text-replace-html-webpack-plugin
 ```
 
 # Basic Usage
