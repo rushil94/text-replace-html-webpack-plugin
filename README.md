@@ -1,8 +1,6 @@
 # text-replace-html-webpack-plugin
 
-[![Build Status](https://travis-ci.org/rushil94/text-replace-html-webpack-plugin.svg?branch=master)](https://travis-ci.org/rushil94/text-replace-html-webpack-plugin)
-
-[![CircleCI](https://circleci.com/gh/rushil94/text-replace-html-webpack-plugin.svg?style=svg)](https://circleci.com/gh/rushil94/text-replace-html-webpack-plugin)
+[![Build Status](https://travis-ci.org/rushil94/text-replace-html-webpack-plugin.svg?branch=master)](https://travis-ci.org/rushil94/text-replace-html-webpack-plugin) [![CircleCI](https://circleci.com/gh/rushil94/text-replace-html-webpack-plugin.svg?style=svg)](https://circleci.com/gh/rushil94/text-replace-html-webpack-plugin)
 
 This package is intended to be used along with html-webpack-plugin. It can be used to replace text in the html file created by the html-webpack-plugin during the webpack build process. Works only wth webpack@^4
 
