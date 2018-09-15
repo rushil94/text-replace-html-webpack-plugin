@@ -19,7 +19,7 @@ npm install --save-dev text-replace-html-webpack-plugin
 
 # Options
 
-You can pass configuration objects in the replacementArray to `text-replace-html-webpack-plugin`.
+You can pass configuration objects in the `replacementArray` to `text-replace-html-webpack-plugin`.
 Allowed values are as follows
 
 This internally uses String.prototype.replace(). See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace for more info
