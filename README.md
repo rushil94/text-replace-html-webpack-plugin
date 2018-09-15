@@ -24,11 +24,12 @@ Allowed values are as follows
 
 This internally uses String.prototype.replace(). See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace for more info
 
-|Name|Type|Description|
-|:--:|:--:|:-----:|:----------|
-|**[`regex`](#)**|`{Regular Expression}`|The Regular Expression to be used to search|
-|**[`searchString`](#)**|`{String}`|The string to be search and replaced. If regex is also provided, this will be ignored|
-|**[`replace`](#)**|`{String} or {function}`| Replacement of searchString|
+| Name                      | Type                       | Description                                       |
+| :---:                     |     :---:                  | :---                                              |
+| **[`regex`](#)**          | `{Regular Expression}`     | The Regular Expression to be used to search       |
+| **[`searchString`](#)**   | `{String}`                 | The string to be search and replaced. If regex is also provided, this will be ignored      | 
+| **[`replace`](#)**        | `{String \| function}`     | Replacement of searchString                       |
+
 
 
 # Basic Usage
